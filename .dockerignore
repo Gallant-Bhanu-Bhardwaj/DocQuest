@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.git/
+build/
+dist/
+logs/
+storage/
+models/
+Data/
+Experiments/
+notebook/
+legacy-llamaindex-approach/
+QApplication.egg-info/
+.DS_Store
+.claude/

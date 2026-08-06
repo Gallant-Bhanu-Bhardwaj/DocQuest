@@ -1,0 +1,14 @@
+streamlit
+PyPDF2
+python-docx
+python-dotenv
+pdf2image
+pytesseract
+pillow
+opencv-python-headless
+numpy
+langchain-community
+langchain-huggingface
+sentence-transformers
+faiss-cpu
+langchain-openai

@@ -30,6 +30,11 @@ logging.basicConfig(level=logging.INFO, stream=sys.stdout, format='%(asctime)s -
 # Load environment variables
 load_dotenv()
 
+# Optional: point pytesseract at a specific Tesseract binary (otherwise it uses PATH)
+TESSERACT_CMD = os.getenv("TESSERACT_CMD")
+if TESSERACT_CMD:
+    pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
+
 def load_model():
     try:
         api_key = os.getenv("OPENAI_API_KEY")

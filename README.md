@@ -11,34 +11,68 @@ app_port: 7860
 
 ![DocQuest logo](logo.png)
 
-DocQuest is a simple and interactive Streamlit web app that allows users to ask questions from uploaded documents and receive relevant answers using information retrieval techniques.
+DocQuest is a Streamlit app for asking questions about your own documents. It runs a small
+retrieval-augmented generation (RAG) pipeline: documents are chunked and embedded locally,
+the most relevant chunks are retrieved with FAISS, and an LLM answers from that context only,
+with citations back to the source file and page.
 
 ## 🚀 Features
 
-- Upload documents in **PDF, TXT, or DOCX** format
-- Ask natural language questions related to the uploaded document
-- Real-time **question answering** powered by embeddings and a language model
-- Displays chat history of previously asked questions and answers
-- Intuitive and lightweight UI with branding support
+- Upload **PDF, TXT, or DOCX** files (multiple at once)
+- **OCR fallback**: scanned PDFs with no text layer are rasterized and read with Tesseract
+- Answers grounded in the retrieved context, with **citations** (file name + page)
+- **Retrieval panel** showing the exact chunks the model saw, with distance scores
+- **Edit answers**: save a correction and it is reused for near-duplicate questions
+- Short conversation memory (last few turns) for follow-up questions
 
+## 🛠️ Stack
 
-## 🛠️ Technologies Used
+| Concern | Choice |
+| --- | --- |
+| UI | Streamlit |
+| Text extraction | PyPDF2 (PDF), python-docx (DOCX), plain decode (TXT) |
+| OCR fallback | pdf2image + Tesseract (pytesseract), OpenCV Otsu thresholding |
+| Embeddings | `all-MiniLM-L6-v2` via sentence-transformers / langchain-huggingface (local, cached in `models/`) |
+| Vector store | FAISS (in-memory, top-3 similarity search) |
+| LLM | OpenAI `gpt-4o-mini` via langchain-openai |
 
-- Python
-- Streamlit
-- LangChain / Gemini (embedding & LLM API)
-- Document ingestion & text extraction
-- Session state for chat history
+## ⚙️ Setup
 
-## 📁 Directory Structure
+System dependencies (needed for OCR):
+
+- Tesseract OCR (`brew install tesseract` / `apt install tesseract-ocr`)
+- Poppler (`brew install poppler` / `apt install poppler-utils`)
+
+Python dependencies:
 
 ```bash
-QAWithPDF/
-├── data_ingestion.py      # Loads and parses uploaded documents
-├── embedding.py           # Generates document embeddings using Gemini
-├── model_api.py           # Loads the LLM for answering questions
-StreamlitApp.py            # Main Streamlit app script
-logo.png                   # App logo
-README.md
-requirements.txt
+pip install -r requirements.txt
 ```
+
+Create a `.env` file:
+
+```bash
+OPENAI_API_KEY=sk-...
+# Optional: full path to the Tesseract binary if it is not on PATH
+# TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
+```
+
+Run:
+
+```bash
+streamlit run StreamlitApp.py
+```
+
+A `Dockerfile` is included (installs Tesseract and Poppler, serves on port 7860).
+
+## 📁 Layout
+
+```
+StreamlitApp.py              # The app: extraction, OCR, chunking, FAISS, QA, UI
+logger.py                    # File logging helper
+Dockerfile, packages.txt     # Container / Spaces deployment
+requirements.txt
+legacy-llamaindex-approach/  # Earlier LlamaIndex/Gemini implementation (unused)
+```
+
+Runtime folders `models/`, `storage/`, `logs/` are git-ignored.

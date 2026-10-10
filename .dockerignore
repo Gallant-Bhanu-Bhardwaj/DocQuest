@@ -15,3 +15,5 @@ legacy-llamaindex-approach/
 QApplication.egg-info/
 .DS_Store
 .claude/
+eval/
+tests/

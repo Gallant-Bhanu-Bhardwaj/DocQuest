@@ -1,0 +1,177 @@
+[
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "According to the abstract, on which low-quality dataset do the improvements in NDCG@k and HR@k exceed 10%?",
+    "page": 1,
+    "evidence": "On a low-quality Baby Products dataset, the improvements in NDCG@k and HR@k exceed 10%",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "Why is LLM2Emb feasible for real-time recommendation, given that LLM embeddings are computed offline and cached?",
+    "page": 2,
+    "evidence": "LLM embeddings are computed offline and cached",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "How does ACCT avoid data leakage when training the LightGCN CF model?",
+    "page": 6,
+    "evidence": "using training interactions only under the same temporal split as the sequential recommender",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "What is the role of the lambda_collab hyperparameter in the overall ACCT objective?",
+    "page": 7,
+    "evidence": "is a balancing hyperparameter",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "Into which projection layers of the attention module are the low-rank adaptation matrices inserted during ACCT training?",
+    "page": 8,
+    "evidence": "insert low-rank adaptation matrices into the four",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "How many negative items are randomly sampled for each user at validation and testing time?",
+    "page": 9,
+    "evidence": "we randomly sample 99 negative items for each user",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "How many popularity buckets are used in the Pop-GAR stage?",
+    "page": 10,
+    "evidence": "The number of popularity buckets is set to 20",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "How large is the million-scale interaction dataset used in the efficiency analysis?",
+    "page": 13,
+    "evidence": "million-scale interaction (4,474,721 interactions",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "Which value of k, the number of collaboratively retrieved item pairs, gives the best performance in most cases?",
+    "page": 17,
+    "evidence": "in most cases, 𝑘= 2 achieves the best performance",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "What limitation is noted about the popularity gate at inference time?",
+    "page": 22,
+    "evidence": "the popularity gate is computed per item from historical interactions and remains static at inference time",
+    "type": "keyword"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "How does the paper's neighbor lookup differ from fetching documents at query time when answering questions with an LLM?",
+    "page": 3,
+    "evidence": "ACCT operates at training time over collaborative neighborhoods derived from interaction graphs",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "Which way of combining ID vectors with extra item features keeps the values purely ID-based by injecting the extra data only when attention scores are computed?",
+    "page": 4,
+    "evidence": "integrated into queries and keys while keeping values purely ID-based",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "What input goes into the sigmoid that produces the mixing weight between the text-derived and ID-derived item vectors?",
+    "page": 8,
+    "evidence": "bucket-level popularity embedding",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "On the restaurant-review dataset, which backbone shows the largest improvement over the strongest competitor for overall NDCG@10?",
+    "page": 11,
+    "evidence": "under Stamp, LLM2Emb improves the best baseline’s NDCG@10 by 10.85%",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "What lets the method extract dependable meaning even when item metadata is poor?",
+    "page": 12,
+    "evidence": "reliable semantic information even from low-quality metadata",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "If the contrastive adaptation of the language model is skipped and raw pretrained vectors are used, how much can accuracy fall?",
+    "page": 14,
+    "evidence": "with degradations of up to about 5% on some metrics",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "How does the weight given to the text-derived vector change as items get more interactions?",
+    "page": 15,
+    "evidence": "the gate values are highest when the interaction number is small and gradually decrease as the interaction number increases",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "Which of the tested language models scored a bit below the others?",
+    "page": 16,
+    "evidence": "Qwen2-0.5B performs slightly worse",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "What flaw of the graph-convolution collaborative model makes its chosen neighbors noisy for rarely-seen items?",
+    "page": 19,
+    "evidence": "LightGCN’s message passing tends to over-smooth representations",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "What did the 2-D projection show about how items are arranged in the embedding space after the proposed tuning?",
+    "page": 21,
+    "evidence": "exhibits well-defined cluster structures with clear inter-cluster boundaries",
+    "type": "paraphrased"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "In the Pop-GAR stage, what are the batch size and the ID embedding dimension?",
+    "page": 10,
+    "evidence": "The batch size is 256. The ID embedding dimension is 128",
+    "type": "multi-term"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "Which two operations are applied to an item's text to create its two semantically similar views, and what is the drop rate applied to?",
+    "page": 6,
+    "evidence": "order shuffling and random attribute dropout",
+    "type": "multi-term"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "In the retrieval-threshold table, what thresholds are used for cosine similarity with the SAS and GCN backbones?",
+    "page": 17,
+    "evidence": "threshold 0.5571 0.5362 0.4529 0.8717",
+    "type": "multi-term"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "In the grid search over g_max and g_min, which settings yield the best or near-best HR@k and NDCG@k?",
+    "page": 18,
+    "evidence": "yield the best or near-best HR@k and NDCG@k",
+    "type": "multi-term"
+  },
+  {
+    "doc": "LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf",
+    "question": "What does the text say about how well LightGCN performs inside the framework, and which more powerful collaborative model such as SASRec could give further gains?",
+    "page": 20,
+    "evidence": "employing LightGCN in our framework is far from achieving optimal performance",
+    "type": "multi-term"
+  }
+]

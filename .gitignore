@@ -11,3 +11,4 @@ dist/
 .DS_Store
 notebook/storage/
 storage/
+eval/docs/*.pdf

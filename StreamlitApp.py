@@ -21,6 +21,7 @@ import numpy as np
 from langchain_openai import ChatOpenAI
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
+from retrieval import hybrid_search
 # ---------------------------------
 # ---------------------------------
 
@@ -172,7 +173,7 @@ def build_vector_store(uploaded_files):
         return None
 
 # 7. Answer Query
-def answer_query(query, vector_store, model, chat_history, edited_answers, embedder):
+def answer_query(query, vector_store, model, chat_history, edited_answers, embedder, retrieval_mode="Dense"):
     try:
         # 0. Check the corrections store for a near-duplicate question before touching retrieval/the LLM
         if edited_answers:
@@ -187,7 +188,11 @@ def answer_query(query, vector_store, model, chat_history, edited_answers, embed
                 logging.info(f"Matched stored correction (similarity={best_score:.2f}) - skipping retrieval/LLM.")
                 return best_correction["edited_answer"], []
 
-        docs_with_scores = vector_store.similarity_search_with_score(query, k=3)
+        if retrieval_mode == "Hybrid":
+            # FAISS + BM25 fused with Reciprocal Rank Fusion (see retrieval.py)
+            docs_with_scores = hybrid_search(query, vector_store, k=3)
+        else:
+            docs_with_scores = vector_store.similarity_search_with_score(query, k=3)
 
         context_parts = []
         retrieved_chunks = []
@@ -409,6 +414,7 @@ def main():
         except Exception as e:
             logging.warning(f"Could not load logo.png for sidebar: {e}")
         uploaded_files = st.file_uploader("Upload PDF, TXT, or DOCX files", type=["pdf", "txt", "docx"], accept_multiple_files=True)
+        retrieval_mode = st.radio("Retrieval", ["Dense", "Hybrid"], index=0)
         if uploaded_files and st.button("Process Documents"):
             scan_placeholder = st.empty()
             scan_placeholder.markdown(SCAN_ANIMATION_HTML, unsafe_allow_html=True)
@@ -429,7 +435,7 @@ def main():
             if last_turn is None or query != last_turn["query"]:
                 model = load_model()
                 with st.spinner("Analyzing..."):
-                    answer, retrieved_chunks = answer_query(query, st.session_state.vector_store, model, st.session_state.chat_history, st.session_state.edited_answers, get_embedder())
+                    answer, retrieved_chunks = answer_query(query, st.session_state.vector_store, model, st.session_state.chat_history, st.session_state.edited_answers, get_embedder(), retrieval_mode)
 
                     # Update session state
                     st.session_state.chat_history.append({"query": query, "answer": answer})

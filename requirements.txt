@@ -12,3 +12,4 @@ langchain-huggingface
 sentence-transformers
 faiss-cpu
 langchain-openai
+rank-bm25

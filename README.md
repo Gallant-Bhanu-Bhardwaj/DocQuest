@@ -65,6 +65,23 @@ streamlit run StreamlitApp.py
 
 A `Dockerfile` is included (installs Tesseract and Poppler, serves on port 7860).
 
+## 📊 Evaluation
+
+Retrieval quality of FAISS (dense), BM25 and hybrid (RRF, k=60) was measured with `eval/eval_retrieval.py`.
+A hit means the page containing the answer is among the top-3 retrieved chunks; MRR is computed over the top 3.
+
+Document: LLM2Emb_A_two-stage-LLM-based-embedding-framework-for-long-tail_sequential_recommendation.pdf (28 pages)  
+Questions: 25  |  top-3 chunks per question
+
+| Method | Hit@3 | MRR |
+|---|---|---|
+| FAISS only | 16/25 = 0.640 | 0.533 |
+| BM25 only | 16/25 = 0.640 | 0.547 |
+| Hybrid (RRF k=60) | 20/25 = 0.800 | 0.693 |
+
+This is a small 25-question, single-document sanity check (10 keyword, 10 paraphrased, 5 multi-term questions), not a general benchmark.
+The per-question breakdown is in [eval/results.md](eval/results.md); reproduce with `python eval/eval_retrieval.py`.
+
 ## 📁 Layout
 
 ```
